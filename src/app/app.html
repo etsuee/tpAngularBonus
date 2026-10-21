@@ -24,17 +24,47 @@
     Vous êtes : <strong>{{ status() }}</strong>
   </p>
 
-  <button type="button" (click)="changeStatus('sur site')">Sur site</button>
-  <button type="button" (click)="changeStatus('en télétravail')">En télétravail</button>
-  <button type="button" (click)="changeStatus('absent')">Absent</button>
+  <button
+    type="button"
+    [attr.aria-pressed]="status() === 'sur site'"
+    (click)="changeStatus('sur site')"
+  >
+    Sur site
+  </button>
+  <button
+    type="button"
+    [attr.aria-pressed]="status() === 'en télétravail'"
+    (click)="changeStatus('en télétravail')"
+  >
+    En télétravail
+  </button>
+  <button
+    type="button"
+    [attr.aria-pressed]="status() === 'absent'"
+    (click)="changeStatus('absent')"
+  >
+    Absent
+  </button>
 </section>
 
 <section aria-labelledby="leave-title">
   <h2 id="leave-title">Mes Congés</h2>
   <p>Jours posés : {{ daysTaken() }} sur {{ totalDays }}</p>
 
-  <button type="button" (click)="addDay()">Poser un jour</button>
-  <button type="button" (click)="removeDay()">Annuler un jour</button>
+  <p aria-live="polite" [class.counter--empty]="isEmpty()">
+    Jours restants : {{ remainingDays() }} / {{ totalDays }}
+  </p>
+
+  <p>Vous avez utlisé {{ usedPercent() }} % de vos congés</p>
+  <!-- @if (isEmpty()) {
+    <p>Vous avez posé tous vos jours.</p>
+  } -->
+
+  <button type="button" [disabled]="isEmpty()" (click)="addDay()">Poser un jour</button>
+  <button type="button" [disabled]="daysTaken() === 0" (click)="removeDay()">
+    Annuler un jour
+  </button>
   <button type="button" (click)="reset()">Remettre à zéro</button>
+  <button type="button" (click)="addWeek()">Poser une semaine</button>
 </section>
 <router-outlet />

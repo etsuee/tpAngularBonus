@@ -1,0 +1,8 @@
+.counter--empty {
+  color: #b91c1c;
+  font-weight: 700;
+}
+
+[aria-pressed='true'] {
+  background-color: #dbeafe;
+}

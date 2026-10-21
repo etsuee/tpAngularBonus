@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 // Un type qui n'accepte que ces 3 textes : une faute de frappe sera refusée
@@ -15,6 +15,15 @@ export class App {
   protected readonly userName = 'Mehdi';
   protected readonly totalDays = 25;
   protected readonly daysTaken = signal(0);
+
+  // recalcule automatiquement quand daysTaken change
+  protected readonly remainingDays = computed(() => this.totalDays - this.daysTaken());
+  protected readonly isEmpty = computed(() => this.remainingDays() === 0);
+
+  protected readonly usedPercent = computed(() =>
+    Math.round((this.daysTaken() / this.totalDays) * 100),
+  );
+
   protected message = '';
   protected typed = '';
 
@@ -36,6 +45,10 @@ export class App {
 
   protected reset(): void {
     this.daysTaken.set(0);
+  }
+
+  protected addWeek(): void {
+    this.daysTaken.update((days) => days + 5);
   }
 
   protected sayHello(): void {
