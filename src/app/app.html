@@ -10,13 +10,13 @@
 <!-- aria-live : le lecteur d'écran annonce le message quand il apparait-->
 <p aria-live="polite">{{ message }}</p>
 
-<button type="button" (click)="clearMessage()">Effacer</button>
+<!-- <button type="button" (click)="clearMessage()">Effacer</button> -->
 
-<div>
+<!-- <div>
   <input type="text" (input)="onType(inputRef.value)" #inputRef />
 
   <p>Vous tapez: {{ typed }}</p>
-</div>
+</div> -->
 
 <section aria-labelledby="status-title">
   <h2 id="status-title">Mon statut aujourd'hui</h2>
@@ -54,7 +54,7 @@
 
 <section aria-labelledby="team-title">
   <h2 id="team-title">L'équipe</h2>
-  <app-employee-card />
-  <app-employee-card />
+  <app-employee-card [employee]="claire" />
+  <app-employee-card [employee]="julien" />
 </section>
 <router-outlet />
