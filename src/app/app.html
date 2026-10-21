@@ -13,9 +13,9 @@
 <button type="button" (click)="clearMessage()">Effacer</button>
 
 <div>
-  <input type="text" />
+  <input type="text" (input)="onType(inputRef.value)" #inputRef />
 
-  <p>Vous tapez:</p>
+  <p>Vous tapez: {{ typed }}</p>
 </div>
 
 <section aria-labelledby="status-title">
@@ -27,5 +27,14 @@
   <button type="button" (click)="changeStatus('sur site')">Sur site</button>
   <button type="button" (click)="changeStatus('en télétravail')">En télétravail</button>
   <button type="button" (click)="changeStatus('absent')">Absent</button>
+</section>
+
+<section aria-labelledby="leave-title">
+  <h2 id="leave-title">Mes Congés</h2>
+  <p>Jours posés : {{ daysTaken() }} sur {{ totalDays }}</p>
+
+  <button type="button" (click)="addDay()">Poser un jour</button>
+  <button type="button" (click)="removeDay()">Annuler un jour</button>
+  <button type="button" (click)="reset()">Remettre à zéro</button>
 </section>
 <router-outlet />
