@@ -49,22 +49,12 @@
 
 <section aria-labelledby="leave-title">
   <h2 id="leave-title">Mes Congés</h2>
-  <p>Jours posés : {{ daysTaken() }} sur {{ totalDays }}</p>
+  <app-leave-counter />
+</section>
 
-  <p aria-live="polite" [class.counter--empty]="isEmpty()">
-    Jours restants : {{ remainingDays() }} / {{ totalDays }}
-  </p>
-
-  <p>Vous avez utlisé {{ usedPercent() }} % de vos congés</p>
-  <!-- @if (isEmpty()) {
-    <p>Vous avez posé tous vos jours.</p>
-  } -->
-
-  <button type="button" [disabled]="isEmpty()" (click)="addDay()">Poser un jour</button>
-  <button type="button" [disabled]="daysTaken() === 0" (click)="removeDay()">
-    Annuler un jour
-  </button>
-  <button type="button" (click)="reset()">Remettre à zéro</button>
-  <button type="button" (click)="addWeek()">Poser une semaine</button>
+<section aria-labelledby="team-title">
+  <h2 id="team-title">L'équipe</h2>
+  <app-employee-card />
+  <app-employee-card />
 </section>
 <router-outlet />
