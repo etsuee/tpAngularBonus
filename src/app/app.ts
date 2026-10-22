@@ -30,23 +30,42 @@ export class App {
     this.status.set(newStatus);
   }
 
-  protected readonly claire: Employee = {
-    id: 1,
-    firstName: 'Claire',
-    lastName: 'Martin',
-    email: 'claire.martin@techcorp.fr',
-    job: 'Développeuse front-end',
-    departement: 'Informatique',
-    remote: true,
-  };
-
-  protected readonly julien: Employee = {
-    id: 2,
-    firstName: 'Julien',
-    lastName: 'Bernard',
-    email: 'julien.bernard@techcorp.fr',
-    job: 'Chef de projet',
-    departement: 'Informatique',
-    remote: true,
-  };
+  protected readonly employees: Employee[] = [
+    {
+      id: 1,
+      firstName: 'Claire',
+      lastName: 'Martin',
+      email: 'claire.martin@techcorp.fr',
+      job: 'Développeuse front-end',
+      departement: 'Informatique',
+      remote: true,
+    },
+    {
+      id: 2,
+      firstName: 'Julien',
+      lastName: 'Bernard',
+      email: 'julien.bernard@techcorp.fr',
+      job: 'Chef de projet',
+      departement: 'Informatique',
+      remote: false,
+    },
+    {
+      id: 3,
+      firstName: 'Sarah',
+      lastName: 'Lefèvre',
+      email: 'sarah.lefevre@techcorp.fr',
+      job: 'Chargée RH',
+      departement: 'Ressources humaines',
+      remote: false,
+    },
+    {
+      id: 4,
+      firstName: 'Paul',
+      lastName: 'Washington',
+      email: 'paul.washington@techcorp.fr',
+      job: 'Chargé RH',
+      departement: 'Ressources humaines',
+      remote: false,
+    },
+  ];
 }

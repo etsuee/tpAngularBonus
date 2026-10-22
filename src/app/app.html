@@ -54,7 +54,15 @@
 
 <section aria-labelledby="team-title">
   <h2 id="team-title">L'équipe</h2>
-  <app-employee-card [employee]="claire" />
-  <app-employee-card [employee]="julien" />
+
+  <ul class="team">
+    @for (employee of employees; track employee.id) {
+      <li>
+        <app-employee-card [employee]="employee" />
+      </li>
+    } @empty {
+      <li>Aucun collègue pour le moment.</li>
+    }
+  </ul>
 </section>
 <router-outlet />
