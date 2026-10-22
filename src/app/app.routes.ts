@@ -1,3 +1,13 @@
 import { Routes } from '@angular/router';
+import { AddEmployee } from './pages/add-employee/add-employee';
+import { Home } from './pages/home/home';
+import { TeamPage } from './pages/team-page/team-page';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  // title: le titre de l'onglet different pour chaque page
+  { path: '', title: 'Accueil | TechCorp Equipe', component: Home },
+  { path: 'equipe', title: 'Equipe | TechCorp Equipe', component: TeamPage },
+  { path: 'ajouter', title: 'Ajouter un collègue | TechCorp Equipe', component: AddEmployee },
+  // toute autre adresse renvoie vers l'accueil, toujours en dernier
+  { path: '**', redirectTo: '' },
+];

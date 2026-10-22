@@ -1,73 +1,24 @@
-<h1>{{ appName }}</h1>
-<p>Bonjour {{ userName }}</p>
+<header class="header">
+  <span class="app-name">{{ appName }}</span>
+  <nav aria-label="Navigation principale">
+    <!-- routerLink: change de page sans recharger
+    routerLinkActive: ajoute la classe "active" au lien de la page affichee
+    ariaCurrentWhenActive: annonce "page actuelle" au lecteur d'écran-->
+    <a
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      ariaCurrentWhenActive="page"
+    >
+      Accueil
+    </a>
+    <a routerLink="/equipe" routerLinkActive="active" ariaCurrentWhenActive="page">Equipe</a>
 
-<p>Nous summes en {{ 2020 + 6 }}. Votre prénom compte {{ userName.length }} lettres.</p>
-<p>En majuscules : {{ userName.toUpperCase() }}</p>
+    <a routerLink="/ajouter" routerLinkActive="active" ariaCurrentWhenActive="page">Ajouter</a>
+  </nav>
+</header>
 
-<!-- type="button" : ce bouton ne sert pas à envoyer un formulaire-->
-<button type="button" (click)="sayHello()">Dire Bonjour</button>
-
-<!-- aria-live : le lecteur d'écran annonce le message quand il apparait-->
-<p aria-live="polite">{{ message }}</p>
-
-<!-- <button type="button" (click)="clearMessage()">Effacer</button> -->
-
-<!-- <div>
-  <input type="text" (input)="onType(inputRef.value)" #inputRef />
-
-  <p>Vous tapez: {{ typed }}</p>
-</div> -->
-
-<section aria-labelledby="status-title">
-  <h2 id="status-title">Mon statut aujourd'hui</h2>
-  <p>
-    Vous êtes : <strong>{{ status() }}</strong>
-  </p>
-
-  <button
-    type="button"
-    [attr.aria-pressed]="status() === 'sur site'"
-    (click)="changeStatus('sur site')"
-  >
-    Sur site
-  </button>
-  <button
-    type="button"
-    [attr.aria-pressed]="status() === 'en télétravail'"
-    (click)="changeStatus('en télétravail')"
-  >
-    En télétravail
-  </button>
-  <button
-    type="button"
-    [attr.aria-pressed]="status() === 'absent'"
-    (click)="changeStatus('absent')"
-  >
-    Absent
-  </button>
-</section>
-
-<section aria-labelledby="leave-title">
-  <h2 id="leave-title">Mes Congés</h2>
-  <app-leave-counter />
-</section>
-
-<section aria-labelledby="team-title">
-  <h2 id="team-title">L'équipe</h2>
-
-  <!-- [( )] : la recherche circule dans les deux sens entre App et SearchBox -->
-  <app-search-box [(query)]="search" />
-
-  <p aria-live="polite">{{ filteredEmpoloyees().length }} collègue(s) affiché(s)</p>
-
-  <ul class="team">
-    @for (employee of filteredEmpoloyees(); track employee.id) {
-      <li>
-        <app-employee-card [employee]="employee" />
-      </li>
-    } @empty {
-      <li>Aucun collègue ne correspond à "{{ search() }}".</li>
-    }
-  </ul>
-</section>
-<router-outlet />
+<main class="container">
+  <!-- la page correspondant à l'adresse s'affiche ici -->
+  <router-outlet />
+</main>
