@@ -55,13 +55,18 @@
 <section aria-labelledby="team-title">
   <h2 id="team-title">L'équipe</h2>
 
+  <!-- [( )] : la recherche circule dans les deux sens entre App et SearchBox -->
+  <app-search-box [(query)]="search" />
+
+  <p aria-live="polite">{{ filteredEmpoloyees().length }} collègue(s) affiché(s)</p>
+
   <ul class="team">
-    @for (employee of employees; track employee.id) {
+    @for (employee of filteredEmpoloyees(); track employee.id) {
       <li>
         <app-employee-card [employee]="employee" />
       </li>
     } @empty {
-      <li>Aucun collègue pour le moment.</li>
+      <li>Aucun collègue ne correspond à "{{ search() }}".</li>
     }
   </ul>
 </section>

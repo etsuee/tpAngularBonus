@@ -1,14 +1,15 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, computed } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { EmployeeCard } from './employee-card/employee-card';
 import { LeaveCounter } from './leave-counter/leave-counter';
 import { Employee } from './models/employee';
+import { SearchBox } from './search-box/search-box';
 
 // Un type qui n'accepte que ces 3 textes : une faute de frappe sera refusée
 type Status = 'sur site' | 'en télétravail' | 'absent';
 
 @Component({
-  imports: [EmployeeCard, LeaveCounter, RouterOutlet],
+  imports: [EmployeeCard, LeaveCounter, RouterOutlet, SearchBox],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
@@ -68,4 +69,13 @@ export class App {
       remote: false,
     },
   ];
+
+  protected readonly search = signal('');
+
+  protected readonly filteredEmpoloyees = computed(() => {
+    const text = this.search().trim().toLowerCase();
+    return this.employees.filter((employee) =>
+      (employee.firstName + ' ' + employee.lastName).toLowerCase().includes(text),
+    );
+  });
 }

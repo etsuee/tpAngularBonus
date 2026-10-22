@@ -4,4 +4,11 @@
   <p>{{ employee().departement }}</p>
   <!-- Liaison dep propriete : l'adresse du lien est construite a partir des donnees -->
   <a [href]="'mailto:' + employee().email">{{ employee().email }}</a>
+
+  <!-- @if (employee().remote) {
+    <p class="badge badge--remote">En télétravail</p>
+  } @else {
+    <p class="badge">Sur site</p>
+  } -->
+  <app-status-badge [remote]="employee().remote" />
 </article>
