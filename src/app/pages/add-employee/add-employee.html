@@ -1,25 +1,69 @@
 <h1>Ajouter un collègue</h1>
 
+<p>Tous les champs sont obligatoires, sauf le télétravail</p>
+
+@let firstName = employeeForm.firstName();
+@let lastName = employeeForm.lastName();
+@let emailField = employeeForm.email();
+@let job = employeeForm.job();
+
 <form class="form" [formRoot]="employeeForm">
   <div class="field">
     <label for="first-name">Prénom</label>
-    <!-- [formField] : relie le champ au formulaire, dans les deux sens. -->
-    <input id="first-name" [formField]="employeeForm.firstName" />
+    <input
+      id="first-name"
+      [formField]="employeeForm.firstName"
+      [attr.aria-invalid]="firstName.touched() && firstName.invalid()"
+      [attr.aria-describedby]="
+        firstName.touched() && firstName.invalid() ? 'first-name-error' : null
+      "
+    />
+    @if (firstName.touched() && firstName.invalid()) {
+      <!-- errors()[0] : on affiche la premiere erreur du champ. -->
+      <p class="field__error" id="first-name-error">{{ firstName.errors()[0].message }}</p>
+    }
   </div>
 
   <div class="field">
     <label for="last-name">Nom</label>
-    <input id="last-name" [formField]="employeeForm.lastName" />
+    <input
+      id="last-name"
+      [formField]="employeeForm.lastName"
+      [attr.aria-invalid]="lastName.touched() && lastName.invalid()"
+      [attr.aria-describedby]="lastName.touched() && lastName.invalid() ? 'last-name-error' : null"
+    />
+    @if (lastName.touched() && lastName.invalid()) {
+      <!-- errors()[0] : on affiche la premiere erreur du champ. -->
+      <p class="field__error" id="last-name-error">{{ lastName.errors()[0].message }}</p>
+    }
   </div>
 
   <div class="field">
     <label for="email">E-mail</label>
-    <input id="email" type="email" [formField]="employeeForm.email" />
+    <input
+      id="email"
+      [formField]="employeeForm.email"
+      [attr.aria-invalid]="emailField.touched() && emailField.invalid()"
+      [attr.aria-describedby]="emailField.touched() && emailField.invalid() ? 'email-error' : null"
+    />
+    @if (emailField.touched() && emailField.invalid()) {
+      <!-- errors()[0] : on affiche la premiere erreur du champ. -->
+      <p class="field__error" id="email-error">{{ emailField.errors()[0].message }}</p>
+    }
   </div>
 
   <div class="field">
     <label for="job">Poste</label>
-    <input id="job" [formField]="employeeForm.job" />
+    <input
+      id="job"
+      [formField]="employeeForm.job"
+      [attr.aria-invalid]="job.touched() && job.invalid()"
+      [attr.aria-describedby]="job.touched() && job.invalid() ? 'job-error' : 'job-hint'"
+    />
+    <small id="job-hint">{{ job.value().length }} / 40 caractères</small>
+    @if (job.touched() && job.invalid()) {
+      <p class="field__error" id="job-error">{{ job.errors()[0].message }}</p>
+    }
   </div>
 
   <div class="field">
