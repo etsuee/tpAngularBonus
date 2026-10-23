@@ -12,7 +12,7 @@ export class TeamStore {
       lastName: 'Martin',
       email: 'claire.martin@techcorp.fr',
       job: 'Développeuse front-end',
-      departement: 'Informatique',
+      department: 'Informatique',
       remote: true,
     },
     {
@@ -21,7 +21,7 @@ export class TeamStore {
       lastName: 'Bernard',
       email: 'julien.bernard@techcorp.fr',
       job: 'Chef de projet',
-      departement: 'Informatique',
+      department: 'Informatique',
       remote: false,
     },
     {
@@ -30,7 +30,7 @@ export class TeamStore {
       lastName: 'Lefèvre',
       email: 'sarah.lefevre@techcorp.fr',
       job: 'Chargée RH',
-      departement: 'Ressources humaines',
+      department: 'Ressources humaines',
       remote: false,
     },
   ]);

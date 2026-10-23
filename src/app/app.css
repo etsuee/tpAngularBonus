@@ -1,12 +1,3 @@
-.header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #d1d5db;
-}
-
 .app-name {
   margin-right: auto;
   font-weight: 700;
@@ -27,4 +18,13 @@ nav {
 .container {
   max-width: 64rem;
   margin: 0 auto;
+  padding: 1rem;
+}
+
+/* sur mobile la navigation passe a la ligne au lieu de deborder */
+mat-toolbar {
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  height: auto;
+  min-height: 64px;
 }
